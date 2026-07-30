@@ -1,8 +1,17 @@
 
 import pyautogui
 import time
+import keyboard
 
 ehto = input("1: Puhu, 2: Liiku, 3: Autofarm, 4: Hiiren paikka, 5: Hakkaa farmi, 6: Istutus, 7: Keräys, 8: Juokse farmi läpi, 9: Tyhjää maa (ei toimi) ")
+
+lopetaKoodi = False
+
+def lopeta():
+    global lopetaKoodi
+    lopetaKoodi = True
+
+keyboard.add_hotkey("e", lopeta)
 
 def kavely():
     print(2)
@@ -10,14 +19,19 @@ def kavely():
     time.sleep(1)
     pyautogui.keyDown("d")
     pyautogui.keyDown("space")
-    time.sleep(30)
+    for i in range(300):
+        time.sleep(0.1)
+        if lopetaKoodi:
+            pyautogui.keyUp("d")
+            pyautogui.keyUp("space")
+            return
     pyautogui.keyUp("d")
     pyautogui.keyUp("space")
 
 def kirjoitus():
     print(1)
     time.sleep(1)
-    hiiren_paikka = pyautogui.position()
+    #hiiren_paikka = pyautogui.position()
     #print(hiiren_paikka)
     pyautogui.click(1870, 33)
     pyautogui.typewrite("kissa ja koira im so fast writer cant u see super haker man program")
@@ -65,21 +79,44 @@ def hiirenpaikka():
 def farminhakkaus():
     pyautogui.hotkey("alt", "tab")
 
+    kierrosmaara = 0
     for i in range(5):
-        pyautogui.keyDown("d")
+
+        if kierrosmaara % 2 == 0:
+            nappain = "d" # liiku oikealle
+            hiiripainallus = (1861, 662) # riko oikealta alhaalta kaksi blokkia
+        else:
+            nappain = "a" # liiku vasemmalle
+            hiiripainallus = (85, 725) # riko vasemmalta alhaalta kaksi blokkia
+
+        pyautogui.keyDown(nappain)
         pyautogui.keyDown("space")
 
-        time.sleep(100)
+        for i in range(1000):
+            time.sleep(0.1)
+            if lopetaKoodi == True:
+                pyautogui.keyUp(nappain)
+                pyautogui.keyUp("space")
+                return
 
-        pyautogui.keyUp("d")
+        pyautogui.keyUp(nappain)
         pyautogui.keyUp("space")
 
-        pyautogui.moveTo(1861, 662)
+        pyautogui.moveTo(hiiripainallus)
 
         pyautogui.mouseDown()
-        time.sleep(2)
+
+        for i in range(20):
+            time.sleep(0.1)
+            if lopetaKoodi == True:
+                pyautogui.mouseUp()
+                return
+
         pyautogui.mouseUp()
 
+        kierrosmaara += 1
+
+        """"
         pyautogui.keyDown("a")
         pyautogui.keyDown("space")
 
@@ -93,6 +130,7 @@ def farminhakkaus():
         pyautogui.mouseDown()
         time.sleep(2)
         pyautogui.mouseUp()
+        """
 
 def istutus():
     pyautogui.hotkey("alt", "tab")
@@ -103,11 +141,23 @@ def istutus():
         pyautogui.mouseDown()
 
         pyautogui.keyDown("d")
-        time.sleep(15)
+
+        for i in range(150):
+            time.sleep(0.1)
+            if lopetaKoodi == True:
+                pyautogui.keyUp("d")
+                return
+            
         pyautogui.keyUp("d")
 
         pyautogui.keyDown("a")
-        time.sleep(15)
+
+        for i in range(150):
+                    time.sleep(0.1)
+                    if lopetaKoodi == True:
+                        pyautogui.keyUp("a")
+                        return
+               
         pyautogui.keyUp("a")
 
 def kerays():
@@ -117,12 +167,16 @@ def kerays():
 
     for i in range(7):
         for i in range(29):
+            if lopetaKoodi == True:
+                return
             pyautogui.keyDown("d")
             time.sleep(0.4)
             pyautogui.keyUp("d")
             time.sleep(0.4)
 
         for i in range(29):
+            if lopetaKoodi == True:
+                return
             pyautogui.keyDown("a")
             time.sleep(0.4)
             pyautogui.keyUp("a")
@@ -134,11 +188,23 @@ def farmin_lapijuoksu():
 
     for i in range(5):
         pyautogui.keyDown("d")
-        time.sleep(15)
+
+        for i in range(150):
+            time.sleep(0.1)
+            if lopetaKoodi == True:
+                pyautogui.keyUp("d")
+                return
+            
         pyautogui.keyUp("d")
 
         pyautogui.keyDown("a")
-        time.sleep(15)
+
+        for i in range(150):
+            time.sleep(0.1)
+            if lopetaKoodi == True:
+                pyautogui.keyUp("a")
+                return
+        
         pyautogui.keyUp("a")
 
 def tyhjaamaa():
