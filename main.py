@@ -10,6 +10,8 @@ lopetaKoodi = False
 def lopeta():
     global lopetaKoodi
     lopetaKoodi = True
+    print("piipiojjjdd")
+    quit()
 
 keyboard.add_hotkey("e", lopeta)
 
@@ -211,7 +213,7 @@ def tyhjaamaa():
     pyautogui.hotkey("alt", "tab")
     time.sleep(1)
 
-"""
+
     pyautogui.keyDown("space")
 
     for i in range(20):
@@ -219,24 +221,24 @@ def tyhjaamaa():
             pyautogui.keyDown("d")
             time.sleep(0.4)
             pyautogui.keyUp("d")
-            time.sleep(2)
+            time.sleep(3)
 
-            pyautogui.moveTo(1861, 662)
-            pyautogui.mouseDown()
-            time.sleep(1)
-            pyautogui.mouseUp()
+        pyautogui.moveTo(1861, 662)
+        pyautogui.mouseDown()
+        time.sleep(1)
+        pyautogui.mouseUp()
 
         for i in range(29):
             pyautogui.keyDown("a")
             time.sleep(0.4)
             pyautogui.keyUp("a")
-            time.sleep(2)
+            time.sleep(3)
 
-            pyautogui.moveTo(85, 725)
-            pyautogui.mouseDown()
-            time.sleep(1)
-            pyautogui.mouseUp()
-"""
+        pyautogui.moveTo(85, 725)
+        pyautogui.mouseDown()
+        time.sleep(1)
+        pyautogui.mouseUp()
+
 
 if ehto == "1":
     kirjoitus()
