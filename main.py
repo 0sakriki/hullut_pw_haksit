@@ -40,9 +40,13 @@ def kirjoitus():
     pyautogui.press('enter')
 
 def autofarm():
-    print(3)
+    autofarm_kysymys = input("3. Autofarmi, laavan farmaus tällä hetkellä vanhassa. Haluatko käyttää vanhaa vai uutta metodia? ")
+    if autofarm_kysymys == "uutta":
+        autofarm_uusi()
+
     pyautogui.hotkey("alt", "tab")
 
+    kierrosmittari = 0
     for i in range(50):
 
         pyautogui.click(1036, 1027) # ottaa blokit käteen
@@ -69,9 +73,46 @@ def autofarm():
         pyautogui.move(-300, 65)
         pyautogui.move(300, 0, duration = 7)
 
+        pyautogui.keyDown("w")
+        pyautogui.keyUp("w")
+
         pyautogui.click(1036, 1027) # ottaa blokit käteen
 
-        print(f"{i}. kierros")
+        kierrosmittari += 1
+        print(f"{kierrosmittari}. kierros")
+
+def autofarm_uusi():
+    kierrosmaara = input("Monellako lyönnillä farmaamasi blokki menee rikki? 3 tai 5 yleensä. ")
+    pyautogui.hotkey("alt", "tab")
+
+    pyautogui.click(1036, 1027) # ottaa blokit käteen
+
+    pyautogui.mouseDown(830, 469)
+
+    pyautogui.moveRel(255, 0, duration=1)
+    pyautogui.moveTo(1080, 414, duration=0)
+    pyautogui.moveRel(-255, 0, duration=1)
+    pyautogui.moveTo(830, 469, duration=0)
+
+    pyautogui.keyDown("z")
+    pyautogui.keyUp("z")
+
+    for i in range(20):
+        for i in range(int(kierrosmaara)):
+            pyautogui.moveRel(255, 0, duration=1)
+            pyautogui.moveTo(1080, 414, duration=0.3)
+            pyautogui.moveRel(-255, 0, duration=1)
+            pyautogui.moveTo(830, 469, duration=0)
+        pyautogui.keyDown("c")
+        pyautogui.keyUp("c")
+        pyautogui.moveRel(255, 0, duration=1)
+        pyautogui.moveTo(1080, 414, duration=0)
+        pyautogui.moveRel(-255, 0, duration=1)
+        pyautogui.moveTo(830, 469, duration=0)
+        pyautogui.keyDown("z")
+        pyautogui.keyUp("z")
+        
+
 
 def hiirenpaikka():
     pyautogui.click(873, 1029)
